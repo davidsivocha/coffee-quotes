@@ -43,6 +43,7 @@ body {
 .header h1, .header h3 {
     color: #fff;
     text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.8);
+    padding:0 10px 0 10px;
 }
 
 .header h1.text {
