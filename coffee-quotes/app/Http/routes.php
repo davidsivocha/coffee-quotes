@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Quote;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 $app->get('/', function() use ($app) {
     $count = Quote::query()->get()->count();
@@ -16,6 +17,10 @@ $app->get('/', function() use ($app) {
 });
 
 $app->get('/{id}', function($id) use ($app) {
-    $quote = Quote::query()->findOrFail($id);
-    return view('quote', ['quote' => $quote]);
+    try {
+        $quote = Quote::query()->findOrFail($id);
+        return view('quote', ['quote' => $quote]);
+    } catch (ModelNotFoundException $mnfe) {
+        return view('404');
+    }
 });
